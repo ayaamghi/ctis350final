@@ -43,7 +43,7 @@ public class HFEmbeddingExample {
         try (ZooModel<String, float[]> model = ModelZoo.loadModel(criteria);
              Predictor<String, float[]> predictor = model.newPredictor()) {
 
-            String text = "Israeli police say Palestinian home in West Bank attacked  #news,United States";
+            String text = "Israeli police say Palestinian home in West Bank attacked  #news";
             float[] embedding = predictor.predict(text);
             System.out.printf("First 3 values of embedding: %.5f, %.5f, %.5f%n",
                     embedding[0], embedding[1], embedding[2]);
