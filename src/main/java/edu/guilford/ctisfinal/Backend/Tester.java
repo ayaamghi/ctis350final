@@ -11,22 +11,40 @@ import edu.guilford.ctisfinal.Backend.Inference.TweetPopularityPredictor;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
 
 public class Tester {
     static String modelName = "sentence-transformers/all-MiniLM-L6-v2";
-    static String modelUrl  = "djl://ai.djl.huggingface.pytorch/" + modelName;
+    static String modelUrl = "djl://ai.djl.huggingface.pytorch/" + modelName;
 
-    public static void main(String[] args) throws TranslateException {
-
-
-        ContextManager manager = ContextManager.getInstance();
-
-        EmbeddingCreator embeddingCreator = manager.getEmbeddingCreator();
-        TweetPopularityPredictor tweetPopularityPredictor = manager.getModel();
-
-        System.out.println(tweetPopularityPredictor.predict(embeddingCreator.getEmbedding("hello world"), 200000000f, 1450782900f));
+    public static void main(String[] args) throws TranslateException, IOException {
 
 
+//        ContextManager manager = ContextManager.getInstance();
+//
+//        EmbeddingCreator embeddingCreator = manager.getEmbeddingCreator();
+//        TweetPopularityPredictor tweetPopularityPredictor = manager.getModel();
+//
+//        System.out.println(tweetPopularityPredictor.predict(embeddingCreator.getEmbedding("hello world"), 200000000f, 1450782900f));
+
+        Path csvPath = Path.of("/Users/ayaam/Programming/School/final/src/main/resources/edu/guilford/ctisfinal/russian_10k_df.csv");
+        CsvParser df = new CsvParser(csvPath);
+        System.out.println("Columns: " + df.getColumns());
+        System.out.println("Rows:    " + df.getRowCount());
+
+        // Get entire column
+        List<String> texts = df.getColumn("embedding");
+        System.out.println("First 3 texts: " + texts.subList(0, 3));
+
+        // Get a single cell
+        String firstText = df.get(0, "noun_phrases");
+        System.out.println("First tweet: " + firstText);
+
+    }
+
+
+}
 //        EmbeddingCreator embeddingCreator = new EmbeddingCreator(modelName, modelUrl);
 //
 //        float[] embedding = embeddingCreator.getEmbedding("Israeli police say Palestinian home in West Bank attacked  #news");
@@ -50,5 +68,3 @@ public class Tester {
 //                System.out.println("Predicted updates: " + result.getFirst());
 
 
-    }
-}

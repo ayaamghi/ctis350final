@@ -1,10 +1,8 @@
 package edu.guilford.ctisfinal.GUI.TabControllers;
 
-import ai.djl.Model;
 import ai.djl.translate.TranslateException;
 import edu.guilford.ctisfinal.Backend.ContextManager;
 import edu.guilford.ctisfinal.Backend.Inference.Embeddings.EmbeddingCreator;
-import edu.guilford.ctisfinal.Backend.Inference.TweetPopularityPredictor;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -82,7 +80,7 @@ public class TweetWriterController {
 
                 result = String.format("Predicted popularity: %.0f", score);
                 int k = 5; // or any number you like
-                ArrayList<String> sims = getKHighestSimilarities(embedding, k);
+                ArrayList<String> sims = getKHighestSimilarities(embedding, k, manager.getDf());
 
                 similaritiesBox.getChildren().clear();
                 for (String s : sims) {

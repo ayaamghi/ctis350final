@@ -3,6 +3,7 @@ package edu.guilford.ctisfinal.Backend;
 import edu.guilford.ctisfinal.Backend.Inference.Embeddings.EmbeddingCreator;
 import edu.guilford.ctisfinal.Backend.Inference.TweetPopularityPredictor;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 public class ContextManager {
@@ -15,6 +16,7 @@ public class ContextManager {
     private TweetPopularityPredictor model;
     private EmbeddingCreator embeddingCreator;
 
+    private CsvParser df;
     private ContextManager() {
         try {
             embeddingCreator = new EmbeddingCreator(modelName, modelUrl);
@@ -22,6 +24,7 @@ public class ContextManager {
                     "mymodel",
                     Path.of("src/main/resources/edu/guilford/ctisfinal/russian_10k_model.pt")
             );
+            df = new CsvParser(Path.of("/Users/ayaam/Programming/School/final/src/main/resources/edu/guilford/ctisfinal/russian_10k_df.csv"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -42,6 +45,12 @@ public class ContextManager {
         return model;
     }
 
+    public CsvParser getDf() {
+        return df;
+    }
+    public void setDf(Path path) throws IOException {;
+        df = new CsvParser(path);
+    }
     public void changeModel(String newModelName, Path modelPath) {
         try {
             model.changeModel(newModelName, modelPath);
