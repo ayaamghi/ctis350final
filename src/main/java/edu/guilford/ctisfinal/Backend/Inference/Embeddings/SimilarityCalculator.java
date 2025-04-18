@@ -39,6 +39,14 @@ public class SimilarityCalculator {
         return dotProduct / (Math.sqrt(magnitudeA) * Math.sqrt(magnitudeB));
     }
 
+    /**
+     * Finds the k most similar rows in a CSV file to a given embedding.
+     *
+     * @param embedding The embedding to compare against.
+     * @param k        The number of similar rows to return.
+     * @param df       The CSV file as a CsvParser object.
+     * @return A list of the k most similar rows.
+     */
     public static ArrayList<String> getKHighestSimilarities(float[] embedding, int k, CsvParser df) {
 
         ArrayList<Map<CsvParser.Row, Double>> rows = new ArrayList<>();
@@ -70,6 +78,12 @@ public class SimilarityCalculator {
         }
         return topKRows;
     }
+    /**
+     * Parses a string representation of an embedding into a float array
+     *
+     * @param s The string representation of the embedding.
+     * @return The parsed float array.
+     */
     private static float[] parseEmbeddingString(String s) {
         String inner = s.replaceAll("[\\[\\]]", "");
         String[] parts = inner.split(",\\s*");

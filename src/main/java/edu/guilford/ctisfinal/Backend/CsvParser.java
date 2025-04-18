@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.util.*;
 
 /**
- * A lightweight in‑memory CSV “DataFrame”:
+ * A lightweight in‑memory CSV “DataFrame” to mirror Pandas DataFrame.
  *   • Load once on construction
  *   • getColumns(), getRows(), getColumn(name), get(row, col)
  */

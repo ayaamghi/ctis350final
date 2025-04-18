@@ -25,6 +25,14 @@ public class TweetPopularityPredictor {
     private Model model;
     private Predictor<NDList, NDList> predictor;
 
+    /***
+     * Constructor for the TweetPopularityPredictor class.
+     * @param modelName
+     * @param modelPath
+     * @throws ModelNotFoundException
+     * @throws MalformedModelException
+     * @throws IOException
+     */
     public TweetPopularityPredictor(String modelName, Path modelPath) throws ModelNotFoundException, MalformedModelException, IOException {
         criteria = Criteria.builder()
                 .setTypes(NDList.class, NDList.class)
@@ -74,7 +82,7 @@ public class TweetPopularityPredictor {
     }
 
     /***
-     * Predicts the popularity of a tweet based on the input features.
+     * Predicts the popularity of a tweet based on the input features (assumes precompiled NDList).
      * @param input
      * @return NDList containing the predicted popularity score
      * @throws TranslateException
@@ -84,6 +92,14 @@ public class TweetPopularityPredictor {
     }
 
 
+    /***
+     * Predicts the popularity of a tweet based on the embedding, followers, and timestamp.
+     * @param embedding
+     * @param followers
+     * @param timestamp
+     * @return predicted popularity score
+     * @throws TranslateException
+     */
     public float predict(float[] embedding, float followers, float timestamp) throws TranslateException {
         NDList input = createInput(embedding, followers, timestamp);
         return predictor.predict(input).getFirst().getFloat(0);
@@ -91,6 +107,13 @@ public class TweetPopularityPredictor {
 
 
 
+    /***
+     * Creates an NDList input for the model based on the embedding, followers, and timestamp (assuming these are the inputs for the model)
+     * @param embedding
+     * @param followers
+     * @param timestamp
+     * @return NDList containing the input features
+     */
     public NDList createInput(float[] embedding, float followers, float timestamp) {
 
         NDManager manager = NDManager.newBaseManager();

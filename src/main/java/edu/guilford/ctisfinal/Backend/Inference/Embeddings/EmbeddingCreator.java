@@ -13,7 +13,9 @@ import ai.djl.translate.TranslateException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+/***
+ * * EmbeddingCreator is a class that creates embeddings for text using a pre-trained model.
+ */
 public class EmbeddingCreator {
 
     private String modelName;
@@ -27,6 +29,12 @@ public class EmbeddingCreator {
     private Predictor<String, float[]> predictor;
 
 
+    /***
+     * Constructor for the EmbeddingCreator class.
+     * @param modelName
+     * @param modelUrl
+     * @throws IOException
+     */
     public EmbeddingCreator(String modelName, String modelUrl) throws IOException {
         this.modelName = modelName;
         this.modelUrl = modelUrl;
@@ -57,6 +65,12 @@ public class EmbeddingCreator {
          }
     }
 
+    /***
+     * Whatever model you created , use that model to create embeddings
+     * @param text
+     * @return
+     * @throws TranslateException
+     */
     public float[] getEmbedding(String text) throws  TranslateException {
             return predictor.predict(text);
         }
