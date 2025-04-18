@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane fx:id="tabPane"
+         prefHeight="947.5" prefWidth="1080.0"
+         xmlns="http://javafx.com/javafx/17.0.12"
+         xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="edu.guilford.ctisfinal.GUI.HelloController">
+    <tabs>
+        <Tab text="Map Visualization">
+            <content>
+                <fx:include source="tabs/MapVisualization.fxml"/>
+            </content>
+        </Tab>
+
+        <Tab text="Tweet Writer">
+            <content>
+                <fx:include source="tabs/TweetWriter.fxml"/>
+            </content>
+        </Tab>
+
+        <Tab text="Topic Visualizer">
+            <content>
+                <fx:include source="tabs/TopicVisualizer.fxml"/>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>

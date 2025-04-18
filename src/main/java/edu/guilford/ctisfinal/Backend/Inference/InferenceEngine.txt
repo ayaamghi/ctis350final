@@ -1,17 +1,19 @@
-package edu.guilford.ctisfinal.Backend;
+package edu.guilford.ctisfinal.Backend.Inference;
+
 import java.nio.file.*;
 import java.util.Arrays;
 
-import ai.djl.*;
-import ai.djl.inference.*;
+import ai.djl.Model;
+import ai.djl.inference.Predictor;
 import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDList;
 import ai.djl.ndarray.NDManager;
 import ai.djl.ndarray.types.Shape;
-import ai.djl.repository.zoo.*;
-import ai.djl.translate.*;
-
-import static edu.guilford.ctisfinal.Backend.Embedding.embedding_example;
+import ai.djl.repository.zoo.Criteria;
+import ai.djl.repository.zoo.ModelZoo;
+import ai.djl.translate.Batchifier;
+import ai.djl.translate.Translator;
+import ai.djl.translate.TranslatorContext;
 
 public class InferenceEngine {
 
@@ -21,7 +23,7 @@ public class InferenceEngine {
         Criteria<NDList, NDList> criteria = Criteria.builder()
                 .setTypes(NDList.class, NDList.class)
                 .optModelPath(modelDir)
-                .optModelName("mymodel") // exclude .pt
+                .optModelName("mymodel")
                 .optEngine("PyTorch")
                 .optTranslator(new NoOpTranslator())
                 .build();
@@ -32,8 +34,10 @@ public class InferenceEngine {
             try (NDManager manager = NDManager.newBaseManager()) {
                 float followers = 200000000f;
                 float timestamp = 1450782900f;
+
+                // assume embedding_example is defined elsewhere
                 float[] combinedFeatures = Arrays.copyOf(embedding_example, embedding_example.length + 2);
-                combinedFeatures[embedding_example.length] = followers;
+                combinedFeatures[embedding_example.length]     = followers;
                 combinedFeatures[embedding_example.length + 1] = timestamp;
                 NDArray input = manager.create(combinedFeatures, new Shape(1, combinedFeatures.length));
                 NDList result = predictor.predict(new NDList(input));
@@ -58,6 +62,4 @@ public class InferenceEngine {
             return null;
         }
     }
-
-    }
-
+}
