@@ -39,7 +39,6 @@ public class SimilarityCalculator {
         return dotProduct / (Math.sqrt(magnitudeA) * Math.sqrt(magnitudeB));
     }
 
-    //TODO implement this
     public static ArrayList<String> getKHighestSimilarities(float[] embedding, int k, CsvParser df) {
 
         ArrayList<Map<CsvParser.Row, Double>> rows = new ArrayList<>();
@@ -67,7 +66,7 @@ public class SimilarityCalculator {
 
 
             topKRows.add(rows.get(i).keySet().iterator().next().get("content") +
-                 " Impressions " + rows.get(i).keySet().iterator().next().get("updates") +    "  (Similarity: " + rows.get(i).values().iterator().next() + ")"););
+                 " Impressions " + rows.get(i).keySet().iterator().next().get("updates") +    "  (Similarity: " + rows.get(i).values().iterator().next() + ")");
         }
         return topKRows;
     }

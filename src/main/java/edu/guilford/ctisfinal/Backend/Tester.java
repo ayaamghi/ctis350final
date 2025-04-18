@@ -28,6 +28,7 @@ public class Tester {
 //
 //        System.out.println(tweetPopularityPredictor.predict(embeddingCreator.getEmbedding("hello world"), 200000000f, 1450782900f));
 
+        //TODO fix this imports
         Path csvPath = Path.of("/Users/ayaam/Programming/School/final/src/main/resources/edu/guilford/ctisfinal/russian_10k_df.csv");
         CsvParser df = new CsvParser(csvPath);
         System.out.println("Columns: " + df.getColumns());
