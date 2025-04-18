@@ -35,7 +35,7 @@ public class SimilarityCalculator {
     }
 
     //TODO implement this
-    public ArrayList<String> getKHighestSimilarities(float[] embedding, int k) {
+    public static ArrayList<String> getKHighestSimilarities(float[] embedding, int k) {
 
 
 

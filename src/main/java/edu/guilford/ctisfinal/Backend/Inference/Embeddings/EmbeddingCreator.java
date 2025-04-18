@@ -13,6 +13,7 @@ import ai.djl.translate.TranslateException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 public class EmbeddingCreator {
 
     private String modelName;

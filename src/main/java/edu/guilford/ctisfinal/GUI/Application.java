@@ -19,6 +19,8 @@ public class Application extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);
+
+
         if(Screen.getScreens().size()  >= 2) {
             // Get the list of screens
             Screen secondScreen = Screen.getScreens().get(1); // Assuming the second screen is at index 1
