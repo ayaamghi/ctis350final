@@ -82,7 +82,7 @@ public class MapController {
         for (int i = 0; i < paths.getLength(); i++) {
             Element el = (Element) paths.item(i);
             String code = el.getAttribute("id");
-            String d    = el.getAttribute("d");
+            String d = el.getAttribute("d");
             if (code == null || code.isEmpty() || d.isEmpty()) continue;
 
             // 4) Color as before
