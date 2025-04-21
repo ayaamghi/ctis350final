@@ -8,7 +8,8 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+            fx:controller="edu.guilford.ctisfinal.GUI.TabControllers.MapController"
+            prefHeight="947.5" prefWidth="1080.0" fx:id="mapPane">
+
 
 </AnchorPane>

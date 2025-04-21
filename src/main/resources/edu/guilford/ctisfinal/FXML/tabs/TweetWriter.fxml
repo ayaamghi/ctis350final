@@ -1,14 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<AnchorPane prefHeight="947.5" prefWidth="1080.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.guilford.ctisfinal.GUI.TabControllers.TweetWriterController">
 
+   <children>
+      <VBox spacing="15"
+            AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20"
+            AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+
+         <!-- Tweet input -->
+         <HBox spacing="10">
+            <Label text="Tweet:" minWidth="60"/>
+            <TextField fx:id="text" HBox.hgrow="ALWAYS" promptText="Enter your tweet…"/>
+         </HBox>
+
+         <!-- Followers count -->
+         <HBox spacing="10">
+            <Label text="Followers:" minWidth="60"/>
+            <TextField fx:id="followers" prefWidth="120" promptText="e.g. 2000000"/>
+         </HBox>
+
+         <!-- Date & Time pickers -->
+         <HBox spacing="10">
+            <Label text="Date:" minWidth="60"/>
+            <DatePicker fx:id="datePicker"/>
+            <Label text="Time:" minWidth="50"/>
+            <TextField fx:id="timeField" prefWidth="80" promptText="HH:mm"/>
+         </HBox>
+
+         <!-- Number of neighbors (now a TextField) -->
+         <HBox spacing="10">
+            <Label text="Neighbors:" minWidth="60"/>
+            <TextField fx:id="neighborsField" prefWidth="80" promptText="e.g. 5"/>
+         </HBox>
+
+         <!-- Predict button & result -->
+         <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button fx:id="predictButton" text="Predict"/>
+            <Label fx:id="resultLabel" textFill="green" visible="false"/>
+         </HBox>
+
+         <Separator/>
+
+         <!-- Similarities list -->
+         <Label text="Top Similar Tweets:"/>
+         <ScrollPane fitToWidth="true" fitToHeight="true" prefHeight="300">
+            <content>
+               <VBox fx:id="similaritiesBox" spacing="5"/>
+               <padding>
+                  <Insets top="5" right="5" bottom="5" left="5"/>
+               </padding>
+
+            </content>
+         </ScrollPane>
+
+      </VBox>
+   </children>
 </AnchorPane>
