@@ -83,7 +83,7 @@ public class MapController {
             Element el = (Element) paths.item(i);
             String code = el.getAttribute("id");
             String d = el.getAttribute("d");
-            if (code == null || code.isEmpty() || d.isEmpty()) continue;
+            if (code.isEmpty() || d.isEmpty()) continue;
 
             // 4) Color as before
             int count = freq.getOrDefault(code, 0);
